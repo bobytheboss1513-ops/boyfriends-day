@@ -1,556 +1,887 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>For Naman ♡</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<title>PROJECT NAMAN // CLASSIFIED</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+:root {
+    --black: #030504;
+    --dark: #070a08;
+    --green: #00ff66;
+    --green-dark: #003b1b;
+    --red: #ff1744;
+    --red-dark: #42000e;
+    --gray: #7c8780;
+    --white: #d9ffe5;
+}
 
 * {
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
-    min-height: 100vh;
     background:
-        radial-gradient(circle at 20% 20%, #f3d6dc 0%, transparent 28%),
-        radial-gradient(circle at 80% 80%, #e8c6ce 0%, transparent 30%),
-        #f8f2ed;
-    color: #442d32;
-    font-family: 'Inter', sans-serif;
+        radial-gradient(circle at 50% 0%, #062010 0%, transparent 35%),
+        #030504;
+    color: var(--green);
+    font-family: "Share Tech Mono", "Courier New", monospace;
+    min-height: 100vh;
     overflow-x: hidden;
 }
 
-.star {
+/* CRT SCANLINES */
+body::after {
+    content: "";
     position: fixed;
-    color: #b77b87;
-    opacity: 0.35;
-    font-size: 12px;
-    animation: float 6s ease-in-out infinite;
+    inset: 0;
     pointer-events: none;
+    z-index: 9999;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,255,255,0.025) 0px,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+
+    mix-blend-mode: overlay;
 }
 
-.star:nth-child(1) {
-    top: 12%;
-    left: 10%;
-}
-
-.star:nth-child(2) {
-    top: 25%;
-    right: 15%;
-    animation-delay: 1s;
-}
-
-.star:nth-child(3) {
-    top: 70%;
-    left: 8%;
-    animation-delay: 2s;
-}
-
-.star:nth-child(4) {
-    top: 80%;
-    right: 12%;
-    animation-delay: 3s;
-}
-
-@keyframes float {
-    0%,100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-12px);
-    }
+/* RANDOM TERMINAL GLOW */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(
+            rgba(0,255,100,0.025),
+            rgba(0,255,100,0.025)
+        );
+    z-index: 9998;
 }
 
 .container {
-    width: min(92%, 760px);
-    margin: 0 auto;
-    padding: 70px 0;
+    width: min(1100px, 92%);
+    margin: auto;
+    padding: 30px 0 80px;
 }
 
-.top {
-    text-align: center;
-    margin-bottom: 35px;
+/* TOP SYSTEM BAR */
+
+.system-bar {
+    border: 1px solid var(--green-dark);
+    background: #050805;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    letter-spacing: 1px;
+    box-shadow: 0 0 15px rgba(0,255,102,0.05);
 }
 
-.small {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
+.online {
+    color: var(--green);
+}
+
+.danger {
+    color: var(--red);
+}
+
+/* HEADER */
+
+header {
+    margin: 45px 0;
+    border-left: 4px solid var(--green);
+    padding-left: 22px;
+}
+
+.header-small {
+    color: var(--gray);
+    font-size: 13px;
     letter-spacing: 3px;
-    color: #9b6671;
-    text-transform: uppercase;
 }
 
-h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(50px, 10vw, 82px);
-    font-weight: 500;
-    line-height: 0.9;
-    margin: 18px 0;
-    color: #5b343d;
+.glitch {
+    position: relative;
+    display: inline-block;
+    font-size: clamp(42px, 9vw, 90px);
+    line-height: .9;
+    margin: 15px 0;
+    color: var(--green);
+    text-shadow:
+        3px 0 var(--red),
+        -3px 0 #00e5ff,
+        0 0 18px rgba(0,255,102,.35);
+    animation: flicker 4s infinite;
+}
+
+@keyframes flicker {
+    0%, 18%, 20%, 22%, 63%, 65%, 100% {
+        opacity: 1;
+    }
+    19%, 21%, 64% {
+        opacity: .65;
+    }
 }
 
 .subtitle {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    color: #805963;
+    color: var(--gray);
+    font-size: 14px;
+    max-width: 700px;
 }
 
-.card {
-    background: rgba(255,255,255,0.62);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255,255,255,0.8);
-    border-radius: 28px;
-    padding: 38px;
-    box-shadow: 0 20px 60px rgba(91,52,61,0.12);
-    margin-top: 25px;
-}
+/* TERMINAL */
 
 .terminal {
-    font-family: 'DM Mono', monospace;
+    border: 1px solid var(--green-dark);
+    background: rgba(3,7,4,.95);
+    margin: 30px 0;
+    box-shadow:
+        0 0 25px rgba(0,255,102,.04),
+        inset 0 0 30px rgba(0,255,102,.015);
+}
+
+.terminal-head {
+    border-bottom: 1px solid var(--green-dark);
+    padding: 9px 12px;
+    background: #071008;
+    display: flex;
+    justify-content: space-between;
     font-size: 12px;
-    line-height: 2;
-    color: #89616a;
-    background: #f4e7e5;
-    border-radius: 18px;
-    padding: 20px;
-    margin-bottom: 28px;
+    color: var(--gray);
+}
+
+.terminal-head span:first-child {
+    color: var(--green);
+}
+
+.terminal-body {
+    padding: 25px;
+}
+
+/* BOOT LOG */
+
+.boot {
+    color: #78857c;
+    font-size: 13px;
+    line-height: 1.9;
+    margin-bottom: 35px;
+}
+
+.boot .success {
+    color: var(--green);
+}
+
+.boot .warning {
+    color: var(--red);
+}
+
+/* SECTION */
+
+.section-label {
+    color: var(--red);
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: var(--green);
+    font-size: clamp(22px, 5vw, 35px);
+    margin: 0 0 25px;
+}
+
+/* PROFILE */
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid var(--green-dark);
+    border-left: 1px solid var(--green-dark);
+}
+
+.profile-item {
+    padding: 17px;
+    border-right: 1px solid var(--green-dark);
+    border-bottom: 1px solid var(--green-dark);
+    min-height: 80px;
+}
+
+.profile-key {
+    color: var(--gray);
+    font-size: 11px;
+    display: block;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+}
+
+.profile-value {
+    color: var(--white);
+    font-size: 16px;
+}
+
+.red-text {
+    color: var(--red);
+}
+
+.green-text {
+    color: var(--green);
+}
+
+/* CLASSIFIED WARNING */
+
+.warning-box {
+    border: 1px solid var(--red);
+    background: rgba(255,23,68,.045);
+    color: var(--red);
+    padding: 18px;
+    margin: 25px 0;
+    box-shadow: 0 0 20px rgba(255,23,68,.05);
+}
+
+.warning-box strong {
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* ADVENTURE */
+
+.adventure-text {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.command {
+    color: var(--green);
+}
+
+/* BUTTONS */
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
 button {
-    border: none;
-    background: #713f4b;
-    color: #fff8f6;
-    padding: 14px 27px;
-    border-radius: 100px;
-    font-family: 'Inter', sans-serif;
+    background: #030604;
+    border: 1px solid var(--green);
+    color: var(--green);
+    padding: 13px 18px;
+    font-family: inherit;
     font-size: 13px;
-    letter-spacing: 0.5px;
     cursor: pointer;
-    transition: 0.3s ease;
-    box-shadow: 0 8px 25px rgba(113,63,75,0.18);
+    transition: .15s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 button:hover {
-    transform: translateY(-2px);
-    background: #8b5360;
-    box-shadow: 0 12px 30px rgba(113,63,75,0.25);
+    background: var(--green);
+    color: #020402;
+    box-shadow:
+        0 0 10px var(--green),
+        0 0 25px rgba(0,255,102,.25);
+    transform: translate(-1px,-1px);
 }
 
-.question {
-    margin-top: 28px;
-    padding: 28px;
-    background: rgba(255,255,255,0.55);
-    border-radius: 22px;
-    border: 1px solid rgba(113,63,75,0.08);
+button:active {
+    transform: translate(1px,1px);
 }
 
-.level {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: #a46c78;
+.response {
+    margin-top: 25px;
+    border-left: 3px solid var(--green);
+    background: #050a06;
+    padding: 20px;
+    line-height: 1.8;
+    color: var(--white);
+    display: none;
 }
 
-.question h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 500;
+.response.show {
+    display: block;
+    animation: terminalIn .25s ease;
 }
 
-input {
-    width: 100%;
-    padding: 14px 17px;
-    border-radius: 14px;
-    border: 1px solid #dec5c9;
-    background: #fffaf8;
-    color: #53343b;
-    outline: none;
-    font-family: 'Inter', sans-serif;
-    margin-bottom: 12px;
+@keyframes terminalIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-input:focus {
-    border-color: #9e6571;
-    box-shadow: 0 0 0 3px rgba(158,101,113,0.1);
-}
-
-.result {
-    color: #8a5260;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    margin-top: 14px;
-}
+/* HIDDEN SECTIONS */
 
 .hidden {
     display: none;
 }
 
-.final {
-    text-align: center;
-    padding: 20px 5px;
+/* PATCH NOTES */
+
+.patch {
+    border-left: 3px solid var(--green);
+    padding-left: 20px;
+    margin: 25px 0;
 }
 
-.heart {
-    font-size: 50px;
-    animation: heartbeat 1.8s infinite;
+.patch-title {
+    color: var(--white);
+    font-size: 21px;
+    margin-bottom: 20px;
 }
 
-@keyframes heartbeat {
-    0%,100% {
-        transform: scale(1);
-    }
-
-    15% {
-        transform: scale(1.12);
-    }
-
-    30% {
-        transform: scale(1);
-    }
-}
-
-.final h2 {
-    font-size: 46px;
-    margin-bottom: 10px;
-}
-
-.final p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 23px;
+.patch-line {
+    margin: 12px 0;
     line-height: 1.6;
-    color: #704b53;
+}
+
+.plus {
+    color: var(--green);
+}
+
+.minus {
+    color: var(--red);
+}
+
+.issue {
+    color: #ff8b9e;
+}
+
+/* PROGRESS */
+
+.progress {
+    margin: 25px 0;
+    border: 1px solid var(--green-dark);
+    padding: 15px;
+    color: var(--green);
+}
+
+.progress-bar {
+    margin-top: 12px;
+    height: 8px;
+    background: #071008;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 100%;
+    background: var(--green);
+    box-shadow: 0 0 12px var(--green);
+    animation: loading 1.7s steps(5) forwards;
+}
+
+@keyframes loading {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* FINAL FILE */
+
+.final-file {
+    border: 1px solid var(--green);
+    background: #020503;
+    padding: 25px;
+    margin-top: 25px;
+    line-height: 1.9;
+}
+
+.final-header {
+    color: var(--red);
+    border-bottom: 1px solid var(--red-dark);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.love-message {
+    color: var(--white);
+    margin: 25px 0;
+    white-space: pre-line;
+    font-size: 16px;
+    line-height: 2;
 }
 
 .signature {
-    margin-top: 35px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 25px;
-    font-style: italic;
-    color: #7c4b57;
+    color: var(--green);
+    margin-top: 25px;
 }
 
-.footer {
+/* FOOTER */
+
+footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--green-dark);
+    color: #465149;
+    font-size: 11px;
+    letter-spacing: 1px;
     text-align: center;
-    margin-top: 35px;
-    color: #a27a82;
-    font-size: 10px;
-    letter-spacing: 2px;
 }
 
+/* RESPONSIVE */
+
+@media (max-width: 650px) {
+
+    .container {
+        width: 94%;
+        padding-top: 15px;
+    }
+
+    .glitch {
+        font-size: 45px;
+    }
+
+    .terminal-body {
+        padding: 17px;
+    }
+
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+        text-align: left;
+    }
+
+    .system-bar {
+        font-size: 10px;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<div class="star">✦</div>
-<div class="star">♡</div>
-<div class="star">✧</div>
-<div class="star">♡</div>
-
 <div class="container">
 
-    <div class="top">
+    <!-- SYSTEM BAR -->
 
-        <div class="small">
-            made especially for Naman
+    <div class="system-bar">
+        <span class="online">● SYSTEM ONLINE</span>
+        <span>ENCRYPTION: LOVE-256</span>
+        <span class="danger">[ CLASSIFIED ]</span>
+    </div>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="header-small">
+            // UNAUTHORIZED ACCESS DETECTED
         </div>
 
-        <h1>For Naman, ♡</h1>
+        <div class="glitch">
+            PROJECT NAMAN
+        </div>
 
         <div class="subtitle">
-            A tiny digital universe made for one person.
+            [ TOP SECRET DATABASE ]<br>
+            A restricted digital file containing classified information
+            regarding Subject: NAMAN.
         </div>
 
+    </header>
+
+
+    <!-- BOOT TERMINAL -->
+
+    <div class="terminal">
+
+        <div class="terminal-head">
+            <span>root@project-naman:~</span>
+            <span>SESSION_03.10.2026</span>
+        </div>
+
+        <div class="terminal-body">
+
+            <div class="boot">
+                &gt; booting PROJECT_NAMAN...<br>
+                &gt; loading classified database...<br>
+                &gt; checking security protocols...<br>
+                &gt; encryption detected...<br>
+                <span class="success">&gt; access granted.</span><br>
+                <span class="warning">&gt; WARNING: contents are extremely classified.</span><br>
+                &gt; opening subject profile...
+            </div>
+
+
+            <!-- PART 1 -->
+
+            <div class="section-label">
+                [ FILE_001 ] // SUBJECT PROFILE
+            </div>
+
+            <h2>CLASSIFIED FILE</h2>
+
+            <div class="warning-box">
+                <strong>⚠ WARNING: RESTRICTED INFORMATION</strong>
+                Unauthorized users attempting to access this file
+                will be immediately detected.
+            </div>
+
+            <div class="profile-grid">
+
+                <div class="profile-item">
+                    <span class="profile-key">Subject</span>
+                    <span class="profile-value">Naman</span>
+                </div>
+
+                <div class="profile-item">
+                    <span class="profile-key">Status</span>
+                    <span class="profile-value green-text">BOYFRIEND ♡</span>
+                </div>
+
+                <div class="profile-item">
+                    <span class="profile-key">Specialization</span>
+                    <span class="profile-value">Guitar</span>
+                </div>
+
+                <div class="profile-item">
+                    <span class="profile-key">Threat Level</span>
+                    <span class="profile-value red-text">EXTREMELY ANNOYING</span>
+                </div>
+
+                <div class="profile-item">
+                    <span class="profile-key">Known Weakness</span>
+                    <span class="profile-value">ME</span>
+                </div>
+
+                <div class="profile-item">
+                    <span class="profile-key">Classification</span>
+                    <span class="profile-value">GOOD LISTENER</span>
+                </div>
+
+                <div class="profile-item">
+                    <span class="profile-key">Boyfriend Level</span>
+                    <span class="profile-value green-text">∞%</span>
+                </div>
+
+            </div>
+
+        </div>
     </div>
 
 
-    <div class="card">
+    <!-- PART 2 -->
 
-        <div class="terminal">
+    <div class="terminal">
 
-            > initializing something special...<br>
-            > searching memories...<br>
-            > memories found: ∞<br>
-            > recipient identified: Naman ♡<br>
-            > access requires completion of the following...
-
+        <div class="terminal-head">
+            <span>root@project-naman:/decision</span>
+            <span class="danger">DECISION REQUIRED</span>
         </div>
 
+        <div class="terminal-body">
 
-        <div style="text-align:center;">
-            <button onclick="startGame()">
-                Enter the little secret →
+            <div class="section-label">
+                [ FILE_002 ] // DECISION REQUIRED
+            </div>
+
+            <h2>CHOOSE YOUR ADVENTURE</h2>
+
+            <div class="adventure-text">
+                A restricted file has been discovered.
+                The subject must choose what happens next.
+            </div>
+
+            <div class="buttons">
+
+                <button onclick="choose('open')">
+                    [ OPEN FILE ]
+                </button>
+
+                <button onclick="choose('run')">
+                    [ RUN AWAY ]
+                </button>
+
+                <button onclick="choose('delete')">
+                    [ DELETE FILE ]
+                </button>
+
+            </div>
+
+            <div id="response" class="response"></div>
+
+        </div>
+    </div>
+
+
+    <!-- PART 3 -->
+
+    <div id="patchSection" class="terminal hidden">
+
+        <div class="terminal-head">
+            <span>root@project-naman:/updates</span>
+            <span>PATCH DEPLOYMENT</span>
+        </div>
+
+        <div class="terminal-body">
+
+            <div class="section-label">
+                [ FILE_003 ] // SYSTEM UPDATE
+            </div>
+
+            <h2>PATCH NOTES</h2>
+
+            <div class="patch">
+
+                <div class="patch-title">
+                    NAMAN v2026.10
+                </div>
+
+                <div class="patch-line">
+                    <span class="plus">+</span>
+                    100 boyfriend points
+                </div>
+
+                <div class="patch-line">
+                    <span class="plus">+</span>
+                    Improved loving skills
+                </div>
+
+                <div class="patch-line">
+                    <span class="plus">+</span>
+                    Added ability to make me smile
+                </div>
+
+                <div class="patch-line">
+                    <span class="plus">+</span>
+                    Increased level of understanding me
+                </div>
+
+            </div>
+
+
+            <div class="patch">
+
+                <div class="patch-title">
+                    BUG FIXES
+                </div>
+
+                <div class="patch-line">
+                    <span class="minus">-</span>
+                    Randomly annoying girlfriend
+                </div>
+
+                <div class="patch-line">
+                    <span class="minus">-</span>
+                    Occasional nonsense
+                </div>
+
+                <div class="patch-line">
+                    <span class="minus">-</span>
+                    Spend too much time with others and ignore me
+                </div>
+
+            </div>
+
+
+            <div class="patch">
+
+                <div class="patch-title">
+                    KNOWN ISSUES
+                </div>
+
+                <div class="patch-line issue">
+                    - Still impossible to uninstall.
+                </div>
+
+            </div>
+
+
+            <button onclick="openReport()">
+                [ VIEW FULL REPORT ]
             </button>
-        </div>
-
-
-        <!-- QUESTION 1 -->
-
-        <div id="game" class="hidden">
-
-            <div class="question">
-
-                <div class="level">
-                    LEVEL 01 / LOVE
-                </div>
-
-                <h3>
-                    How much do I love you?
-                </h3>
-
-                <p>
-                    There is only one answer. ♡
-                </p>
-
-                <input
-                    id="answer1"
-                    placeholder="your answer..."
-                >
-
-                <button onclick="check1()">
-                    unlock
-                </button>
-
-                <div id="result1" class="result"></div>
-
-            </div>
 
         </div>
-
-
-        <!-- QUESTION 2 -->
-
-        <div id="level2" class="hidden">
-
-            <div class="question">
-
-                <div class="level">
-                    LEVEL 02 / OUR STORY
-                </div>
-
-                <h3>
-                    When did we start this relationship?
-                </h3>
-
-                <p>
-                    Think back to the beginning of us. ♡
-                </p>
-
-                <input
-                    id="answer2"
-                    placeholder="DD Month YYYY"
-                >
-
-                <button onclick="check2()">
-                    continue
-                </button>
-
-                <div id="result2" class="result"></div>
-
-            </div>
-
-        </div>
-
-
-        <!-- QUESTION 3 -->
-
-        <div id="level3" class="hidden">
-
-            <div class="question">
-
-                <div class="level">
-                    LEVEL 03 / YOU SHOULD KNOW THIS
-                </div>
-
-                <h3>
-                    What is my favourite food?
-                </h3>
-
-                <p>
-                    Surely you know this one... 👀
-                </p>
-
-                <input
-                    id="answer3"
-                    placeholder="type your answer..."
-                >
-
-                <button onclick="check3()">
-                    unlock the final message ♡
-                </button>
-
-                <div id="result3" class="result"></div>
-
-            </div>
-
-        </div>
-
-
-        <!-- FINAL MESSAGE -->
-
-        <div id="message" class="hidden">
-
-            <div class="final">
-
-                <div class="heart">
-                    ♡
-                </div>
-
-                <div class="small">
-                    ACCESS GRANTED
-                </div>
-
-                <h2>
-                    Hiiii Naman babyyy,
-                </h2>
-
-                <p>
-                    Happyyyy boyfriends dayyyyyyy
-                    umahhhhh 💋
-                </p>
-
-                <p>
-                    <strong>I LOVE YOUUUU</strong>
-                </p>
-
-                <p>
-                    Mamooooooonnnn will always love you
-                    a lottttttt ❤️
-                </p>
-
-                <div class="signature">
-                    Made with love just for you
-                    <br><br>
-                    Muwah 💋
-                </div>
-
-            </div>
-
-        </div>
-
     </div>
 
 
-    <div class="footer">
-        LOVE_PROTOCOL · 03.10.2026 · ♡
+    <!-- PART 4 -->
+
+    <div id="finalSection" class="terminal hidden">
+
+        <div class="terminal-head">
+            <span>root@project-naman:/recovery</span>
+            <span class="danger">TOP SECRET</span>
+        </div>
+
+        <div class="terminal-body">
+
+            <div class="section-label">
+                [ FILE_004 ] // FINAL RECOVERY
+            </div>
+
+            <h2>RECOVERING ENCRYPTED FILE</h2>
+
+            <div class="progress">
+
+                &gt; recovering encrypted file...<br>
+                &gt; decrypting...<br>
+                &gt; 25% █████░░░░░░░░░░<br>
+                &gt; 50% ██████████░░░░░░<br>
+                &gt; 75% ███████████████░<br>
+                &gt; 100% █████████████████<br>
+                &gt; file recovered successfully.
+
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+
+            </div>
+
+
+            <div class="final-file">
+
+                <div class="final-header">
+                    FILE: why_naman_is_special.txt
+                </div>
+
+                <button onclick="openFinal()">
+                    [ OPEN SECRET FILE ♡ ]
+                </button>
+
+                <div id="finalMessage" class="hidden">
+
+                    <div class="love-message">
+
+                        CLASSIFICATION: TOP SECRET
+
+                        FILE OPENED.
+
+                        &gt; recipient: Naman
+                        &gt; occasion: Boyfriend's Day
+
+                        Hiiii babyyy,
+
+                        Happyyyy boyfriends dayyyyyyy umahhhhh 💋
+
+                        I LOVE YOUUUU ❤️
+
+                        Mamooooooonnnn will always love you a lottttttt ❤️
+
+                    </div>
+
+                    <div class="signature">
+                        Made with love just for you<br>
+                        Muwah 💋
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
     </div>
+
+
+    <footer>
+        PROJECT NAMAN · CLASSIFIED · 03.10.2026 · ♡
+    </footer>
 
 </div>
 
 
 <script>
 
-function startGame() {
-    document.getElementById("game").classList.remove("hidden");
+function choose(choice) {
+
+    const response = document.getElementById("response");
+
+    let message = "";
+
+    if (choice === "open") {
+
+        message =
+        `✓ FILE OPENED.<br>
+        &gt; You chose wisely.<br>
+        &gt; Unfortunately, you are now trapped in the boyfriend database. ♡`;
+
+    }
+
+    if (choice === "run") {
+
+        message =
+        `✕ ESCAPE ATTEMPT DETECTED.<br>
+        &gt; Nice try, Naman.<br>
+        &gt; There is literally nowhere to run. 💀<br>
+        &gt; Returning you to the classified file...`;
+
+    }
+
+    if (choice === "delete") {
+
+        message =
+        `✕ ACCESS DENIED.<br>
+        &gt; You cannot delete yourself from this database.<br>
+        &gt; Reason: someone already decided you're important. ♡`;
+
+    }
+
+    response.innerHTML = message;
+    response.classList.add("show");
+
+    document.getElementById("patchSection")
+        .classList.remove("hidden");
+
+    setTimeout(() => {
+
+        document.getElementById("patchSection")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    }, 300);
 }
 
 
-/* QUESTION 1 */
+function openReport() {
 
-function check1() {
+    document.getElementById("finalSection")
+        .classList.remove("hidden");
 
-    let answer = document
-        .getElementById("answer1")
-        .value
-        .trim()
-        .toLowerCase();
+    setTimeout(() => {
 
-    if (
-        answer === "infinite" ||
-        answer === "infinity" ||
-        answer === "∞"
-    ) {
+        document.getElementById("finalSection")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
 
-        document.getElementById("result1").innerHTML =
-            "✓ correct. love level: infinite ♡";
-
-        document.getElementById("level2").classList.remove("hidden");
-
-    } else {
-
-        document.getElementById("result1").innerHTML =
-            "♡ hmm... think bigger.";
-
-    }
+    }, 200);
 }
 
 
-/* QUESTION 2 */
+function openFinal() {
 
-function check2() {
+    document.getElementById("finalMessage")
+        .classList.remove("hidden");
 
-    let answer = document
-        .getElementById("answer2")
-        .value
-        .trim()
-        .toLowerCase()
-        .replace(/,/g, "")
-        .replace(/\s+/g, " ");
-
-    let correctAnswers = [
-        "12 january 2025",
-        "12th january 2025",
-        "12 january, 2025",
-        "12th january, 2025",
-        "12/01/2025",
-        "12-01-2025"
-    ];
-
-    if (correctAnswers.includes(answer)) {
-
-        document.getElementById("result2").innerHTML =
-            "✓ correct. the beginning of us ♡";
-
-        document.getElementById("level3").classList.remove("hidden");
-
-    } else {
-
-        document.getElementById("result2").innerHTML =
-            "♡ go back to the beginning...";
-
-    }
-}
-
-
-/* QUESTION 3 */
-
-function check3() {
-
-    let answer = document
-        .getElementById("answer3")
-        .value
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g, " ");
-
-    if (answer === "mangkho bhat") {
-
-        document.getElementById("result3").innerHTML =
-            "✓ correct. you know me too well ♡";
-
-        document.getElementById("message").classList.remove("hidden");
-
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: "smooth"
-        });
-
-    } else {
-
-        document.getElementById("result3").innerHTML =
-            "♡ nopeee... you should know this one!";
-
-    }
 }
 
 </script>
