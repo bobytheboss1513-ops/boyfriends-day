@@ -1,4 +1,5 @@
- <!DOCTYPE html>
+ ```html
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,18 +8,31 @@
 <title>PROJECT NAMAN // CLASSIFIED</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
+
+
+/* =========================================================
+   ROOT
+========================================================= */
 
 :root {
-    --black: #030504;
-    --dark: #070a08;
-    --green: #00ff66;
-    --green-dark: #003b1b;
-    --red: #ff1744;
-    --red-dark: #42000e;
-    --gray: #7c8780;
-    --white: #d9ffe5;
+    --paper: #f5f3ee;
+    --paper-light: #faf9f6;
+    --ink: #252522;
+    --muted: #77746d;
+    --line: #d9d6ce;
+    --line-dark: #bcb8ae;
+    --accent: #4e6255;
+    --accent-light: #e8ede9;
+    --red: #86575a;
+    --white: #ffffff;
 }
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 * {
     box-sizing: border-box;
@@ -30,433 +44,619 @@ html {
 
 body {
     margin: 0;
-    background:
-        radial-gradient(circle at 50% 0%, #062010 0%, transparent 35%),
-        #030504;
-    color: var(--green);
-    font-family: "Share Tech Mono", "Courier New", monospace;
-    min-height: 100vh;
-    overflow-x: hidden;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Inter", sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* CRT SCANLINES */
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-
-    background:
-        repeating-linear-gradient(
-            0deg,
-            rgba(255,255,255,0.025) 0px,
-            rgba(255,255,255,0.025) 1px,
-            transparent 1px,
-            transparent 4px
-        );
-
-    mix-blend-mode: overlay;
+button {
+    font-family: inherit;
 }
 
-/* RANDOM TERMINAL GLOW */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background:
-        linear-gradient(
-            rgba(0,255,100,0.025),
-            rgba(0,255,100,0.025)
-        );
-    z-index: 9998;
-}
 
-.container {
-    width: min(1100px, 92%);
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page {
+    width: min(960px, calc(100% - 40px));
     margin: auto;
-    padding: 30px 0 80px;
 }
 
-/* TOP SYSTEM BAR */
 
-.system-bar {
-    border: 1px solid var(--green-dark);
-    background: #050805;
-    padding: 10px 14px;
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.topbar {
     display: flex;
     justify-content: space-between;
-    gap: 15px;
-    flex-wrap: wrap;
-    font-size: 12px;
-    letter-spacing: 1px;
-    box-shadow: 0 0 15px rgba(0,255,102,0.05);
+    align-items: center;
+    gap: 20px;
+
+    padding: 18px 0;
+
+    border-bottom: 1px solid var(--line);
+
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+
+    color: var(--muted);
 }
 
-.online {
-    color: var(--green);
+.topbar-left {
+    color: var(--accent);
 }
 
-.danger {
-    color: var(--red);
-}
-
-/* HEADER */
-
-header {
-    margin: 45px 0;
-    border-left: 4px solid var(--green);
-    padding-left: 22px;
-}
-
-.header-small {
-    color: var(--gray);
-    font-size: 13px;
-    letter-spacing: 3px;
-}
-
-.glitch {
-    position: relative;
+.status-dot {
     display: inline-block;
-    font-size: clamp(42px, 9vw, 90px);
-    line-height: .9;
-    margin: 15px 0;
-    color: var(--green);
-    text-shadow:
-        3px 0 var(--red),
-        -3px 0 #00e5ff,
-        0 0 18px rgba(0,255,102,.35);
-    animation: flicker 4s infinite;
+
+    width: 6px;
+    height: 6px;
+
+    margin-right: 7px;
+
+    border-radius: 50%;
+
+    background: var(--accent);
 }
 
-@keyframes flicker {
-    0%, 18%, 20%, 22%, 63%, 65%, 100% {
-        opacity: 1;
-    }
-    19%, 21%, 64% {
-        opacity: .65;
-    }
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    padding: 100px 0 110px;
 }
 
-.subtitle {
-    color: var(--gray);
-    font-size: 14px;
-    max-width: 700px;
-}
-
-/* TERMINAL */
-
-.terminal {
-    border: 1px solid var(--green-dark);
-    background: rgba(3,7,4,.95);
-    margin: 30px 0;
-    box-shadow:
-        0 0 25px rgba(0,255,102,.04),
-        inset 0 0 30px rgba(0,255,102,.015);
-}
-
-.terminal-head {
-    border-bottom: 1px solid var(--green-dark);
-    padding: 9px 12px;
-    background: #071008;
+.hero-kicker {
     display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: var(--gray);
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 26px;
+
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    color: var(--muted);
 }
 
-.terminal-head span:first-child {
-    color: var(--green);
+.hero-kicker::before {
+    content: "";
+
+    width: 30px;
+    height: 1px;
+
+    background: var(--line-dark);
 }
 
-.terminal-body {
-    padding: 25px;
+.hero h1 {
+    max-width: 760px;
+
+    margin: 0;
+
+    font-family: "DM Serif Display", serif;
+    font-size: clamp(62px, 11vw, 112px);
+    font-weight: 400;
+    line-height: .88;
+    letter-spacing: -3px;
+
+    color: var(--ink);
 }
 
-/* BOOT LOG */
+.hero h1 span {
+    color: var(--accent);
+}
 
-.boot {
-    color: #78857c;
+.hero-description {
+    max-width: 500px;
+
+    margin: 35px 0 0;
+
+    color: var(--muted);
+
     font-size: 13px;
     line-height: 1.9;
-    margin-bottom: 35px;
 }
 
-.boot .success {
-    color: var(--green);
+.hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+
+    margin-top: 40px;
+
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+
+    color: var(--muted);
 }
 
-.boot .warning {
-    color: var(--red);
+
+/* =========================================================
+   DOSSIER SECTION
+========================================================= */
+
+.dossier-section {
+    margin-bottom: 70px;
 }
 
-/* SECTION */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 
-.section-label {
-    color: var(--red);
-    font-size: 12px;
+    gap: 20px;
+
+    margin-bottom: 22px;
+
+    padding-bottom: 13px;
+
+    border-bottom: 1px solid var(--line);
+}
+
+.section-title {
+    margin: 0;
+
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    font-weight: 500;
     letter-spacing: 2px;
-    margin-bottom: 10px;
+    text-transform: uppercase;
+
+    color: var(--accent);
 }
 
-h2 {
-    color: var(--green);
-    font-size: clamp(22px, 5vw, 35px);
-    margin: 0 0 25px;
+.section-number {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px;
+    color: var(--muted);
 }
 
-/* PROFILE */
 
-.profile-grid {
+/* =========================================================
+   DOSSIER BOX
+========================================================= */
+
+.dossier {
+    background: var(--paper-light);
+    border: 1px solid var(--line);
+
+    padding: 30px;
+}
+
+.dossier-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 30px;
+
+    margin-bottom: 30px;
+}
+
+.dossier-heading {
+    margin: 0;
+
+    font-family: "DM Serif Display", serif;
+    font-size: 35px;
+    font-weight: 400;
+
+    color: var(--ink);
+}
+
+.dossier-code {
+    flex-shrink: 0;
+
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   WARNING
+========================================================= */
+
+.warning {
+    padding: 14px 16px;
+
+    margin-bottom: 28px;
+
+    border-left: 2px solid var(--red);
+
+    background: #f3eaea;
+
+    color: var(--red);
+
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px;
+    line-height: 1.7;
+    letter-spacing: .4px;
+}
+
+.warning strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile {
     display: grid;
+
     grid-template-columns: repeat(2, 1fr);
-    border-top: 1px solid var(--green-dark);
-    border-left: 1px solid var(--green-dark);
+
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
 }
 
 .profile-item {
-    padding: 17px;
-    border-right: 1px solid var(--green-dark);
-    border-bottom: 1px solid var(--green-dark);
-    min-height: 80px;
+    min-height: 92px;
+
+    padding: 19px 20px;
+
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
 }
 
 .profile-key {
-    color: var(--gray);
-    font-size: 11px;
     display: block;
-    margin-bottom: 7px;
+
+    margin-bottom: 9px;
+
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 8px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
+
+    color: var(--muted);
 }
 
 .profile-value {
-    color: var(--white);
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 500;
+
+    color: var(--ink);
 }
 
-.red-text {
+.profile-value.accent {
+    color: var(--accent);
+}
+
+.profile-value.red {
     color: var(--red);
 }
 
-.green-text {
-    color: var(--green);
-}
 
-/* CLASSIFIED WARNING */
+/* =========================================================
+   DECISION AREA
+========================================================= */
 
-.warning-box {
-    border: 1px solid var(--red);
-    background: rgba(255,23,68,.045);
-    color: var(--red);
-    padding: 18px;
-    margin: 25px 0;
-    box-shadow: 0 0 20px rgba(255,23,68,.05);
-}
+.decision-text {
+    margin: 0 0 25px;
 
-.warning-box strong {
-    display: block;
-    margin-bottom: 8px;
-}
+    max-width: 600px;
 
-/* ADVENTURE */
+    color: var(--muted);
 
-.adventure-text {
-    color: var(--gray);
+    font-size: 13px;
     line-height: 1.8;
-    margin-bottom: 25px;
 }
-
-.command {
-    color: var(--green);
-}
-
-/* BUTTONS */
 
 .buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 9px;
 }
 
-button {
-    background: #030604;
-    border: 1px solid var(--green);
-    color: var(--green);
-    padding: 13px 18px;
-    font-family: inherit;
-    font-size: 13px;
-    cursor: pointer;
-    transition: .15s ease;
+.action-button {
+    padding: 12px 17px;
+
+    border: 1px solid var(--line-dark);
+
+    background: transparent;
+
+    color: var(--ink);
+
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        color .2s ease;
 }
 
-button:hover {
-    background: var(--green);
-    color: #020402;
-    box-shadow:
-        0 0 10px var(--green),
-        0 0 25px rgba(0,255,102,.25);
-    transform: translate(-1px,-1px);
+.action-button:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--white);
 }
 
-button:active {
-    transform: translate(1px,1px);
+.action-button.primary {
+    border-color: var(--accent);
+    color: var(--accent);
 }
+
+.action-button.primary:hover {
+    background: var(--accent);
+    color: var(--white);
+}
+
+
+/* =========================================================
+   RESPONSE
+========================================================= */
 
 .response {
-    margin-top: 25px;
-    border-left: 3px solid var(--green);
-    background: #050a06;
-    padding: 20px;
-    line-height: 1.8;
-    color: var(--white);
     display: none;
+
+    margin-top: 22px;
+
+    padding: 18px 20px;
+
+    border: 1px solid var(--line);
+
+    background: var(--accent-light);
+
+    color: var(--accent);
+
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    line-height: 1.8;
 }
 
 .response.show {
     display: block;
-    animation: terminalIn .25s ease;
 }
 
-@keyframes terminalIn {
-    from {
-        opacity: 0;
-        transform: translateY(5px);
-    }
+
+/* =========================================================
+   PATCH NOTES
+========================================================= */
+
+.patch-list {
+    border-top: 1px solid var(--line);
+}
+
+.patch-row {
+    display: grid;
+    grid-template-columns: 35px 1fr;
+
+    padding: 14px 0;
+
+    border-bottom: 1px solid var(--line);
+
+    font-size: 12px;
+}
+
+.patch-symbol {
+    font-family: "IBM Plex Mono", monospace;
+    color: var(--accent);
+}
+
+.patch-symbol.minus {
+    color: var(--red);
+}
+
+.patch-category {
+    margin: 28px 0 10px;
+
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-info {
+    margin-bottom: 14px;
+
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px;
+    line-height: 1.9;
+
+    color: var(--muted);
+}
+
+.progress-track {
+    width: 100%;
+    height: 4px;
+
+    background: var(--line);
+
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+
+    background: var(--accent);
+
+    animation: load 1.5s ease forwards;
+}
+
+@keyframes load {
     to {
-        opacity: 1;
-        transform: translateY(0);
+        width: 100%;
     }
 }
 
-/* HIDDEN SECTIONS */
+
+/* =========================================================
+   FINAL FILE
+========================================================= */
+
+.final-file {
+    margin-top: 25px;
+
+    border: 1px solid var(--line);
+
+    background: #f8f7f3;
+}
+
+.final-file-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 13px 17px;
+
+    border-bottom: 1px solid var(--line);
+
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 8px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+
+    color: var(--muted);
+}
+
+.final-file-header span:last-child {
+    color: var(--accent);
+}
+
+.final-file-body {
+    padding: 28px;
+}
+
+.secret-message {
+    margin-top: 22px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid var(--line);
+
+    color: var(--ink);
+
+    font-size: 14px;
+    line-height: 2;
+
+    white-space: pre-line;
+}
+
+.signature {
+    margin-top: 30px;
+
+    font-family: "DM Serif Display", serif;
+    font-size: 23px;
+
+    color: var(--accent);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 25px 0 50px;
+
+    border-top: 1px solid var(--line);
+
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 8px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   HIDDEN
+========================================================= */
 
 .hidden {
     display: none;
 }
 
-/* PATCH NOTES */
 
-.patch {
-    border-left: 3px solid var(--green);
-    padding-left: 20px;
-    margin: 25px 0;
-}
-
-.patch-title {
-    color: var(--white);
-    font-size: 21px;
-    margin-bottom: 20px;
-}
-
-.patch-line {
-    margin: 12px 0;
-    line-height: 1.6;
-}
-
-.plus {
-    color: var(--green);
-}
-
-.minus {
-    color: var(--red);
-}
-
-.issue {
-    color: #ff8b9e;
-}
-
-/* PROGRESS */
-
-.progress {
-    margin: 25px 0;
-    border: 1px solid var(--green-dark);
-    padding: 15px;
-    color: var(--green);
-}
-
-.progress-bar {
-    margin-top: 12px;
-    height: 8px;
-    background: #071008;
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-    width: 100%;
-    background: var(--green);
-    box-shadow: 0 0 12px var(--green);
-    animation: loading 1.7s steps(5) forwards;
-}
-
-@keyframes loading {
-    from { width: 0; }
-    to { width: 100%; }
-}
-
-/* FINAL FILE */
-
-.final-file {
-    border: 1px solid var(--green);
-    background: #020503;
-    padding: 25px;
-    margin-top: 25px;
-    line-height: 1.9;
-}
-
-.final-header {
-    color: var(--red);
-    border-bottom: 1px solid var(--red-dark);
-    padding-bottom: 15px;
-    margin-bottom: 20px;
-}
-
-.love-message {
-    color: var(--white);
-    margin: 25px 0;
-    white-space: pre-line;
-    font-size: 16px;
-    line-height: 2;
-}
-
-.signature {
-    color: var(--green);
-    margin-top: 25px;
-}
-
-/* FOOTER */
-
-footer {
-    margin-top: 60px;
-    padding-top: 20px;
-    border-top: 1px solid var(--green-dark);
-    color: #465149;
-    font-size: 11px;
-    letter-spacing: 1px;
-    text-align: center;
-}
-
-/* RESPONSIVE */
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 650px) {
 
-    .container {
-        width: 94%;
-        padding-top: 15px;
+    .page {
+        width: calc(100% - 28px);
     }
 
-    .glitch {
-        font-size: 45px;
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
     }
 
-    .terminal-body {
-        padding: 17px;
+    .hero {
+        padding: 75px 0 80px;
     }
 
-    .profile-grid {
+    .hero h1 {
+        font-size: 62px;
+        letter-spacing: -2px;
+    }
+
+    .hero-description {
+        font-size: 12px;
+    }
+
+    .hero-meta {
+        flex-direction: column;
+        gap: 9px;
+    }
+
+    .dossier {
+        padding: 20px;
+    }
+
+    .dossier-intro {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .dossier-heading {
+        font-size: 30px;
+    }
+
+    .profile {
         grid-template-columns: 1fr;
     }
 
@@ -464,333 +664,632 @@ footer {
         flex-direction: column;
     }
 
-    button {
+    .action-button {
         width: 100%;
         text-align: left;
     }
 
-    .system-bar {
-        font-size: 10px;
+    .final-file-body {
+        padding: 20px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 8px;
     }
 }
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .hero h1 {
+        font-size: 54px;
+    }
+
+    .dossier {
+        padding: 17px;
+    }
+}
+
 </style>
 </head>
 
+
 <body>
 
-<div class="container">
+<div class="page">
 
-    <!-- SYSTEM BAR -->
 
-    <div class="system-bar">
-        <span class="online">● SYSTEM ONLINE</span>
-        <span>ENCRYPTION: LOVE-256</span>
-        <span class="danger">[ CLASSIFIED ]</span>
+    <!-- =====================================================
+         TOP BAR
+    ====================================================== -->
+
+    <div class="topbar">
+
+        <div class="topbar-left">
+            <span class="status-dot"></span>
+            SYSTEM ONLINE
+        </div>
+
+        <div>
+            PROJECT / NAMAN
+        </div>
+
+        <div>
+            03.10.2026
+        </div>
+
     </div>
 
-    <!-- HEADER -->
 
-    <header>
 
-        <div class="header-small">
-            // UNAUTHORIZED ACCESS DETECTED
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <header class="hero">
+
+        <div class="hero-kicker">
+            Classified digital dossier
         </div>
 
-        <div class="glitch">
-            PROJECT NAMAN
-        </div>
+        <h1>
+            Project <span>Naman.</span>
+        </h1>
 
-        <div class="subtitle">
-            [ TOP SECRET DATABASE ]<br>
-            A restricted digital file containing classified information
-            regarding Subject: NAMAN.
+        <p class="hero-description">
+            A restricted collection of information regarding
+            one particularly important person.
+            Access has been granted to exactly one recipient.
+        </p>
+
+        <div class="hero-meta">
+
+            <span>File: PN-031026</span>
+
+            <span>Classification: Personal</span>
+
+            <span>Status: Active</span>
+
         </div>
 
     </header>
 
 
-    <!-- BOOT TERMINAL -->
 
-    <div class="terminal">
+    <!-- =====================================================
+         PART 01
+    ====================================================== -->
 
-        <div class="terminal-head">
-            <span>root@project-naman:~</span>
-            <span>SESSION_03.10.2026</span>
-        </div>
+    <section class="dossier-section">
 
-        <div class="terminal-body">
+        <div class="section-header">
 
-            <div class="boot">
-                &gt; booting PROJECT_NAMAN...<br>
-                &gt; loading classified database...<br>
-                &gt; checking security protocols...<br>
-                &gt; encryption detected...<br>
-                <span class="success">&gt; access granted.</span><br>
-                <span class="warning">&gt; WARNING: contents are extremely classified.</span><br>
-                &gt; opening subject profile...
+            <div class="section-title">
+                File 001 / Subject Profile
             </div>
 
-
-            <!-- PART 1 -->
-
-            <div class="section-label">
-                [ FILE_001 ] // SUBJECT PROFILE
-            </div>
-
-            <h2>CLASSIFIED FILE</h2>
-
-            <div class="warning-box">
-                <strong>⚠ WARNING: RESTRICTED INFORMATION</strong>
-                Unauthorized users attempting to access this file
-                will be immediately detected.
-            </div>
-
-            <div class="profile-grid">
-
-                <div class="profile-item">
-                    <span class="profile-key">Subject</span>
-                    <span class="profile-value">Naman</span>
-                </div>
-
-                <div class="profile-item">
-                    <span class="profile-key">Status</span>
-                    <span class="profile-value green-text">BOYFRIEND ♡</span>
-                </div>
-
-                <div class="profile-item">
-                    <span class="profile-key">Specialization</span>
-                    <span class="profile-value">Guitar</span>
-                </div>
-
-                <div class="profile-item">
-                    <span class="profile-key">Threat Level</span>
-                    <span class="profile-value red-text">EXTREMELY ANNOYING</span>
-                </div>
-
-                <div class="profile-item">
-                    <span class="profile-key">Known Weakness</span>
-                    <span class="profile-value">ME</span>
-                </div>
-
-                <div class="profile-item">
-                    <span class="profile-key">Classification</span>
-                    <span class="profile-value">GOOD LISTENER</span>
-                </div>
-
-                <div class="profile-item">
-                    <span class="profile-key">Boyfriend Level</span>
-                    <span class="profile-value green-text">∞%</span>
-                </div>
-
+            <div class="section-number">
+                01 — 04
             </div>
 
         </div>
-    </div>
 
 
-    <!-- PART 2 -->
+        <div class="dossier">
 
-    <div class="terminal">
+            <div class="dossier-intro">
 
-        <div class="terminal-head">
-            <span>root@project-naman:/decision</span>
-            <span class="danger">DECISION REQUIRED</span>
-        </div>
+                <h2 class="dossier-heading">
+                    Classified File
+                </h2>
 
-        <div class="terminal-body">
+                <div class="dossier-code">
+                    PN / SUBJECT-01
+                </div>
 
-            <div class="section-label">
-                [ FILE_002 ] // DECISION REQUIRED
             </div>
 
-            <h2>CHOOSE YOUR ADVENTURE</h2>
 
-            <div class="adventure-text">
+            <div class="warning">
+
+                <strong>RESTRICTED INFORMATION</strong>
+
+                Unauthorized access is prohibited.
+                Subject data is classified as highly confidential.
+
+            </div>
+
+
+            <div class="profile">
+
+
+                <div class="profile-item">
+
+                    <span class="profile-key">
+                        Subject
+                    </span>
+
+                    <span class="profile-value">
+                        Naman
+                    </span>
+
+                </div>
+
+
+                <div class="profile-item">
+
+                    <span class="profile-key">
+                        Status
+                    </span>
+
+                    <span class="profile-value accent">
+                        Boyfriend ♡
+                    </span>
+
+                </div>
+
+
+                <div class="profile-item">
+
+                    <span class="profile-key">
+                        Specialization
+                    </span>
+
+                    <span class="profile-value">
+                        Guitar
+                    </span>
+
+                </div>
+
+
+                <div class="profile-item">
+
+                    <span class="profile-key">
+                        Threat Level
+                    </span>
+
+                    <span class="profile-value red">
+                        Extremely annoying
+                    </span>
+
+                </div>
+
+
+                <div class="profile-item">
+
+                    <span class="profile-key">
+                        Known Weakness
+                    </span>
+
+                    <span class="profile-value">
+                        Me
+                    </span>
+
+                </div>
+
+
+                <div class="profile-item">
+
+                    <span class="profile-key">
+                        Classification
+                    </span>
+
+                    <span class="profile-value">
+                        Good listener
+                    </span>
+
+                </div>
+
+
+                <div class="profile-item">
+
+                    <span class="profile-key">
+                        Boyfriend Level
+                    </span>
+
+                    <span class="profile-value accent">
+                        ∞%
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PART 02
+    ====================================================== -->
+
+    <section class="dossier-section">
+
+        <div class="section-header">
+
+            <div class="section-title">
+                File 002 / Decision Required
+            </div>
+
+            <div class="section-number">
+                02 — 04
+            </div>
+
+        </div>
+
+
+        <div class="dossier">
+
+            <div class="dossier-intro">
+
+                <h2 class="dossier-heading">
+                    Choose Your Adventure
+                </h2>
+
+                <div class="dossier-code">
+                    ACTION / REQUIRED
+                </div>
+
+            </div>
+
+
+            <p class="decision-text">
+
                 A restricted file has been discovered.
                 The subject must choose what happens next.
-            </div>
+
+            </p>
+
 
             <div class="buttons">
 
-                <button onclick="choose('open')">
-                    [ OPEN FILE ]
+                <button
+                    class="action-button primary"
+                    onclick="choose('open')"
+                >
+                    Open File
                 </button>
 
-                <button onclick="choose('run')">
-                    [ RUN AWAY ]
+
+                <button
+                    class="action-button"
+                    onclick="choose('run')"
+                >
+                    Run Away
                 </button>
 
-                <button onclick="choose('delete')">
-                    [ DELETE FILE ]
+
+                <button
+                    class="action-button"
+                    onclick="choose('delete')"
+                >
+                    Delete File
                 </button>
 
             </div>
 
-            <div id="response" class="response"></div>
+
+            <div
+                id="response"
+                class="response"
+            ></div>
 
         </div>
-    </div>
+
+    </section>
 
 
-    <!-- PART 3 -->
 
-    <div id="patchSection" class="terminal hidden">
+    <!-- =====================================================
+         PART 03
+    ====================================================== -->
 
-        <div class="terminal-head">
-            <span>root@project-naman:/updates</span>
-            <span>PATCH DEPLOYMENT</span>
+    <section
+        id="patchSection"
+        class="dossier-section hidden"
+    >
+
+        <div class="section-header">
+
+            <div class="section-title">
+                File 003 / System Update
+            </div>
+
+            <div class="section-number">
+                03 — 04
+            </div>
+
         </div>
 
-        <div class="terminal-body">
 
-            <div class="section-label">
-                [ FILE_003 ] // SYSTEM UPDATE
-            </div>
+        <div class="dossier">
 
-            <h2>PATCH NOTES</h2>
+            <div class="dossier-intro">
 
-            <div class="patch">
+                <h2 class="dossier-heading">
+                    Patch Notes
+                </h2>
 
-                <div class="patch-title">
-                    NAMAN v2026.10
-                </div>
-
-                <div class="patch-line">
-                    <span class="plus">+</span>
-                    100 boyfriend points
-                </div>
-
-                <div class="patch-line">
-                    <span class="plus">+</span>
-                    Improved loving skills
-                </div>
-
-                <div class="patch-line">
-                    <span class="plus">+</span>
-                    Added ability to make me smile
-                </div>
-
-                <div class="patch-line">
-                    <span class="plus">+</span>
-                    Increased level of understanding me
+                <div class="dossier-code">
+                    VERSION / 2026.10
                 </div>
 
             </div>
 
 
-            <div class="patch">
+            <div class="patch-category">
+                Improvements
+            </div>
 
-                <div class="patch-title">
-                    BUG FIXES
+
+            <div class="patch-list">
+
+
+                <div class="patch-row">
+
+                    <div class="patch-symbol">
+                        +
+                    </div>
+
+                    <div>
+                        100 boyfriend points
+                    </div>
+
                 </div>
 
-                <div class="patch-line">
-                    <span class="minus">-</span>
-                    Randomly annoying girlfriend
+
+                <div class="patch-row">
+
+                    <div class="patch-symbol">
+                        +
+                    </div>
+
+                    <div>
+                        Improved loving skills
+                    </div>
+
                 </div>
 
-                <div class="patch-line">
-                    <span class="minus">-</span>
-                    Occasional nonsense
+
+                <div class="patch-row">
+
+                    <div class="patch-symbol">
+                        +
+                    </div>
+
+                    <div>
+                        Added ability to make me smile
+                    </div>
+
                 </div>
 
-                <div class="patch-line">
-                    <span class="minus">-</span>
-                    Spend too much time with others and ignore me
+
+                <div class="patch-row">
+
+                    <div class="patch-symbol">
+                        +
+                    </div>
+
+                    <div>
+                        Increased level of understanding me
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="patch-category">
+                Bug Fixes
+            </div>
+
+
+            <div class="patch-list">
+
+
+                <div class="patch-row">
+
+                    <div class="patch-symbol minus">
+                        −
+                    </div>
+
+                    <div>
+                        Randomly annoying girlfriend
+                    </div>
+
+                </div>
+
+
+                <div class="patch-row">
+
+                    <div class="patch-symbol minus">
+                        −
+                    </div>
+
+                    <div>
+                        Occasional nonsense
+                    </div>
+
+                </div>
+
+
+                <div class="patch-row">
+
+                    <div class="patch-symbol minus">
+                        −
+                    </div>
+
+                    <div>
+                        Spend too much time with others and ignore me
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="patch-category">
+                Known Issues
+            </div>
+
+
+            <div class="patch-list">
+
+                <div class="patch-row">
+
+                    <div class="patch-symbol minus">
+                        −
+                    </div>
+
+                    <div>
+                        Still impossible to uninstall.
+                    </div>
+
                 </div>
 
             </div>
 
 
-            <div class="patch">
+            <div style="margin-top:25px;">
 
-                <div class="patch-title">
-                    KNOWN ISSUES
-                </div>
-
-                <div class="patch-line issue">
-                    - Still impossible to uninstall.
-                </div>
+                <button
+                    class="action-button primary"
+                    onclick="openReport()"
+                >
+                    View Full Report
+                </button>
 
             </div>
-
-
-            <button onclick="openReport()">
-                [ VIEW FULL REPORT ]
-            </button>
 
         </div>
-    </div>
+
+    </section>
 
 
-    <!-- PART 4 -->
 
-    <div id="finalSection" class="terminal hidden">
+    <!-- =====================================================
+         PART 04
+    ====================================================== -->
 
-        <div class="terminal-head">
-            <span>root@project-naman:/recovery</span>
-            <span class="danger">TOP SECRET</span>
-        </div>
+    <section
+        id="finalSection"
+        class="dossier-section hidden"
+    >
 
-        <div class="terminal-body">
+        <div class="section-header">
 
-            <div class="section-label">
-                [ FILE_004 ] // FINAL RECOVERY
+            <div class="section-title">
+                File 004 / Final Recovery
             </div>
 
-            <h2>RECOVERING ENCRYPTED FILE</h2>
+            <div class="section-number">
+                04 — 04
+            </div>
 
-            <div class="progress">
+        </div>
+
+
+        <div class="dossier">
+
+            <div class="dossier-intro">
+
+                <h2 class="dossier-heading">
+                    Encrypted File
+                </h2>
+
+                <div class="dossier-code">
+                    ACCESS / FINAL
+                </div>
+
+            </div>
+
+
+            <div class="progress-info">
 
                 &gt; recovering encrypted file...<br>
                 &gt; decrypting...<br>
-                &gt; 25% █████░░░░░░░░░░<br>
-                &gt; 50% ██████████░░░░░░<br>
-                &gt; 75% ███████████████░<br>
-                &gt; 100% █████████████████<br>
+                &gt; verifying recipient...<br>
                 &gt; file recovered successfully.
 
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
-                </div>
+            </div>
+
+
+            <div class="progress-track">
+
+                <div class="progress-fill"></div>
 
             </div>
 
 
             <div class="final-file">
 
-                <div class="final-header">
-                    FILE: why_naman_is_special.txt
+
+                <div class="final-file-header">
+
+                    <span>
+                        why_naman_is_special.txt
+                    </span>
+
+                    <span>
+                        TOP SECRET
+                    </span>
+
                 </div>
 
-                <button onclick="openFinal()">
-                    [ OPEN SECRET FILE ♡ ]
-                </button>
 
-                <div id="finalMessage" class="hidden">
+                <div class="final-file-body">
 
-                    <div class="love-message">
 
-                        CLASSIFICATION: TOP SECRET
+                    <button
+                        class="action-button primary"
+                        onclick="openFinal()"
+                    >
+                        Open Secret File ♡
+                    </button>
 
-                        FILE OPENED.
 
-                        &gt; recipient: Naman
-                        &gt; occasion: Boyfriend's Day
+                    <div
+                        id="finalMessage"
+                        class="hidden"
+                    >
 
-                        Hiiii babyyy,
+                        <div class="secret-message">
 
-                        Happyyyy boyfriends dayyyyyyy umahhhhh 💋
+CLASSIFICATION: TOP SECRET
 
-                        I LOVE YOUUUU ❤️
+FILE OPENED.
 
-                        Mamooooooonnnn will always love you a lottttttt ❤️
+&gt; recipient: Naman
+&gt; occasion: Boyfriend's Day
 
-                    </div>
+Hiiii babyyy,
 
-                    <div class="signature">
-                        Made with love just for you<br>
-                        Muwah 💋
+Happyyyy boyfriends dayyyyyyy umahhhhh 💋
+
+I LOVE YOUUUU ❤️
+
+Mamooooooonnnn will always love you a lottttttt ❤️
+
+                        </div>
+
+
+                        <div class="signature">
+
+                            Made with love just for you<br>
+                            Muwah 💋
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -798,23 +1297,46 @@ footer {
             </div>
 
         </div>
-    </div>
 
+    </section>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
 
     <footer>
-        PROJECT NAMAN · CLASSIFIED · 03.10.2026 · ♡
+
+        <span>
+            PROJECT NAMAN
+        </span>
+
+        <span>
+            CLASSIFIED · 03.10.2026 · ♡
+        </span>
+
     </footer>
+
 
 </div>
 
 
+
 <script>
+
+
+/* =========================================================
+   PART 02 — DECISION
+========================================================= */
 
 function choose(choice) {
 
-    const response = document.getElementById("response");
+    const response =
+        document.getElementById("response");
 
     let message = "";
+
 
     if (choice === "open") {
 
@@ -824,6 +1346,7 @@ function choose(choice) {
         &gt; Unfortunately, you are now trapped in the boyfriend database. ♡`;
 
     }
+
 
     if (choice === "run") {
 
@@ -835,6 +1358,7 @@ function choose(choice) {
 
     }
 
+
     if (choice === "delete") {
 
         message =
@@ -844,42 +1368,64 @@ function choose(choice) {
 
     }
 
+
     response.innerHTML = message;
+
     response.classList.add("show");
 
-    document.getElementById("patchSection")
+
+    document
+        .getElementById("patchSection")
         .classList.remove("hidden");
+
 
     setTimeout(() => {
 
-        document.getElementById("patchSection")
+        document
+            .getElementById("patchSection")
             .scrollIntoView({
-                behavior: "smooth"
+                behavior: "smooth",
+                block: "start"
             });
 
-    }, 300);
+    }, 250);
+
 }
 
+
+/* =========================================================
+   PART 03 → PART 04
+========================================================= */
 
 function openReport() {
 
-    document.getElementById("finalSection")
+    document
+        .getElementById("finalSection")
         .classList.remove("hidden");
+
 
     setTimeout(() => {
 
-        document.getElementById("finalSection")
+        document
+            .getElementById("finalSection")
             .scrollIntoView({
-                behavior: "smooth"
+                behavior: "smooth",
+                block: "start"
             });
 
     }, 200);
+
 }
 
 
+/* =========================================================
+   FINAL MESSAGE
+========================================================= */
+
 function openFinal() {
 
-    document.getElementById("finalMessage")
+    document
+        .getElementById("finalMessage")
         .classList.remove("hidden");
 
 }
@@ -888,3 +1434,4 @@ function openFinal() {
 
 </body>
 </html>
+```
